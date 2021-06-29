@@ -2,7 +2,8 @@
 
 namespace EmployeeWagecomputaion
 {
-    //UC3 ADDING PART TIME EMPLOYEE AND CALCULATE THE WAGES
+
+    //UC5 CALCULATING WAGES FOR  A MONTH
     class Program
     {
         //Adding constant global variable
@@ -15,34 +16,40 @@ namespace EmployeeWagecomputaion
             //Initialize local variable
             int EMP_HRS = 0;
             int EMP_WAGES;
+            int DAY;
+            int WORKING_DAYS = 20;
+            int TOTAL_WAGES = 0;
 
             //Creating object or Instance of random class
             Random random = new Random();
-            //Generating Random Value by Calling Next Method
-            int EMP_INPUT = random.Next(0, 3);
 
-            //Using Switch Statement to check Full time or Part time employee
-            switch (EMP_INPUT)
+            //Using for loop to calculate wages for 20 days
+            for (DAY = 1; DAY <= WORKING_DAYS; DAY++)
             {
-                case FULL_TIME:
-                    Console.WriteLine("Full Time Employee");
-                    EMP_HRS = 8;
-                    break;
-                case PART_TIME:
-                    Console.WriteLine("Part Time Employee");
-                    EMP_HRS = 4;
-                    break;
-                default:
-                    Console.WriteLine("Employee is absent");
-                    break;
+                //Generating Random Value by Calling Next Method
+                int EMP_INPUT = random.Next(0, 3);
+                //Using switch case to check full time or part time employee
+                switch (EMP_INPUT)
+                {
+                    case FULL_TIME:
 
+                        EMP_HRS = 8;
+                        break;
+                    case PART_TIME:
 
+                        EMP_HRS = 4;
+                        break;
+                    default:
+                        EMP_HRS = 0;
+                        break;
+                }
             }
 
             //Calculating Daily Wages of Employee
             EMP_WAGES = EMP_HRS * EMP_RATE_PER_HR;
+            TOTAL_WAGES += EMP_WAGES;
 
-            Console.WriteLine("Daily Wage for the employee is " + EMP_WAGES);
+            Console.WriteLine("Employee wage for " + WORKING_DAYS + " day is " + TOTAL_WAGES);
         }
     }
 }
