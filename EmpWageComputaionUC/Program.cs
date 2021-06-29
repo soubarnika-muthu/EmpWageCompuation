@@ -21,22 +21,24 @@ namespace EmployeeWagecomputaion
             //Generating Random Value by Calling Next Method
             int EMP_INPUT = random.Next(0, 3);
 
-            //If else condition to check Full time or Part time employee
-            if (EMP_INPUT == FULL_TIME)
+            //Using Switch Statement to check Full time or Part time employee
+            switch (EMP_INPUT)
             {
-                Console.WriteLine("Full Time Employee");
-                EMP_HRS = 8;
-            }
-            else if (EMP_INPUT == PART_TIME)
-            {
-                Console.WriteLine("Part Time Employee");
-                EMP_HRS = 4;
+                case FULL_TIME:
+                    Console.WriteLine("Full Time Employee");
+                    EMP_HRS = 8;
+                    break;
+                case PART_TIME:
+                    Console.WriteLine("Part Time Employee");
+                    EMP_HRS = 4;
+                    break;
+                default:
+                    Console.WriteLine("Employee is absent");
+                    break;
+
+
             }
 
-            else
-            {
-                Console.WriteLine("Employee is Absent");
-            }
             //Calculating Daily Wages of Employee
             EMP_WAGES = EMP_HRS * EMP_RATE_PER_HR;
 
