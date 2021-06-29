@@ -1,0 +1,16 @@
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\bin\Debug\net5.0\EmpWageComputaionUC.exe
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\bin\Debug\net5.0\EmpWageComputaionUC.deps.json
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\bin\Debug\net5.0\EmpWageComputaionUC.runtimeconfig.json
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\bin\Debug\net5.0\EmpWageComputaionUC.runtimeconfig.dev.json
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\bin\Debug\net5.0\EmpWageComputaionUC.dll
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\bin\Debug\net5.0\ref\EmpWageComputaionUC.dll
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\bin\Debug\net5.0\EmpWageComputaionUC.pdb
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.csproj.AssemblyReference.cache
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.AssemblyInfo.cs
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.dll
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\ref\EmpWageComputaionUC.dll
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.pdb
+C:\Users\hp\source\repos\EmpWageComputaionUC\EmpWageComputaionUC\obj\Debug\net5.0\EmpWageComputaionUC.genruntimeconfig.cache
