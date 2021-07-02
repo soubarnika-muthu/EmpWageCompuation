@@ -11,9 +11,9 @@ namespace EmployeeWagecomputaion
         const int PART_TIME = 2;
         const int EMP_RATE_PER_HR = 20;
 
-        static void Main(string[] args)
+        public static int ComputeEmpWage()
         {
-            //Initialize local variable
+          //Initialize local variable
             int EMP_HRS = 0;
             int EMP_WAGES;
 
@@ -55,6 +55,11 @@ namespace EmployeeWagecomputaion
 
 
             Console.WriteLine("Employee wage for " + WORKING_DAYS + " day is " + TOTAL_WAGES);
+            return TOTAL_WAGES;
+        }
+        static void Main(String[] args)
+        {
+            ComputeEmpWage();
         }
     }
 }
