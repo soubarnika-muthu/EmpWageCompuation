@@ -13,6 +13,7 @@ namespace EmpWageComputaionUC
     /// UC9- Saving total wages for each company using class EmployeeBuilder
     /// UC11-Creating API procedure
     /// UC12-Manage multiple companies using Array list
+    /// UC13-Stores the daily wages of the employee
     /// </summary>
     /// <param name="args">The arguments.</param>
     /// 

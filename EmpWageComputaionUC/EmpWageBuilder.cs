@@ -10,10 +10,10 @@ namespace EmpWageComputaionUC
     {
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
-
+        
         private int numOfCompany = 0;
         private CompanyEmpWage[] companyEmpWageArray;
-
+        private CompanyEmpWage companyEmpWage;
 
         public EmpWageBuilder()
         {
@@ -29,9 +29,12 @@ namespace EmpWageComputaionUC
             for (int i = 0; i < numOfCompany; i++)
             {
                 companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
+               
                 Console.WriteLine(this.companyEmpWageArray[i].toString());
             }
-        }
+
+
+        }     
 
         private int computeEmpWage(CompanyEmpWage companyEmpWage)
         {
