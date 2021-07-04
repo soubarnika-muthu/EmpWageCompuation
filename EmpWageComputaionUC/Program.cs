@@ -1,42 +1,50 @@
 ﻿using System;
-//UC9 CALCULATING WAGES FOR  A TOTAL WORKING DAYS AND HOURS IS REACHED FOR A MONTH
 namespace EmployeeWagecomputaion
 {
-    //Adding constant global variable
 
-
-    public class EmpWageBuilderObject
+    public class EmpWageBuilderArray
     {
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
 
-        private String COMPANY_NAME;
-        private int EMP_RATE_PER_HR;
-        private int NUM_OF_WORKINGDAYS;
-        private int MAX_HRS_PER_MONTH;
-        private int TOTAL_WAGES;
-        //Constructor for EmpWageBuilderObject class; 
-        public EmpWageBuilderObject(String COMPANY_NAME, int EMP_RATE_PER_HR, int NUM_OF_WORKINGDAYS, int MAX_HRS_PER_MONTH)
+        private int numOfCompany = 0;
+        private CompanyEmpWage[] companyEmpWageArray;
+
+
+        public EmpWageBuilderArray()
         {
-           this.COMPANY_NAME= COMPANY_NAME;
-           this.EMP_RATE_PER_HR= EMP_RATE_PER_HR;
-           this.NUM_OF_WORKINGDAYS = NUM_OF_WORKINGDAYS;
-           this.MAX_HRS_PER_MONTH= MAX_HRS_PER_MONTH;
+            this.companyEmpWageArray = new CompanyEmpWage[5];
         }
-        public void ComputeEmpWage()
+        public void addCompanyEmpWage(String COMPANY_NAME, int EMP_RATE_PER_HR, int NUM_OF_WORKINGDAYS, int MAX_HRS_PER_MONTH)
+        {
+            companyEmpWageArray[this.numOfCompany] = new CompanyEmpWage(COMPANY_NAME, EMP_RATE_PER_HR, NUM_OF_WORKINGDAYS, MAX_HRS_PER_MONTH);
+            numOfCompany++;
+        }
+        public void computeEmpWage()
+        {
+            for (int i = 0; i < numOfCompany; i++)
+            {
+                companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
+                Console.WriteLine(this.companyEmpWageArray[i].toString());
+            }
+        }
+
+        public int computeEmpWage(CompanyEmpWage companyEmpWage)
         {
             //Initialize local variable
             int EMP_HRS = 0;
             int TOTAL_HRS = 0;
             int TOTAL_WORKINGDAYS = 0;
-            //Creating object or Instance of random class
-            Random random = new Random();
+
 
             //Using for loop to calculate wages for 20 days
-            while (TOTAL_HRS <= MAX_HRS_PER_MONTH && TOTAL_WORKINGDAYS <= NUM_OF_WORKINGDAYS)
+            while (TOTAL_HRS <= companyEmpWage.MAX_HRS_PER_MONTH && TOTAL_WORKINGDAYS <= companyEmpWage.NUM_OF_WORKINGDAYS)
             {
+                //Creating object or Instance of random class
+                Random random = new Random();
                 //Generating Random Value by Calling Next Method
                 int EMP_INPUT = random.Next(0, 3);
+
                 //Using switch case to check full time or part time employee
                 switch (EMP_INPUT)
                 {
@@ -59,27 +67,52 @@ namespace EmployeeWagecomputaion
 
             }
             //Calculating Daily Wages of Employee
-            TOTAL_WAGES = TOTAL_HRS * EMP_RATE_PER_HR;
-            Console.WriteLine("Total Employee wage for Company " + COMPANY_NAME + " is " + TOTAL_WAGES);
-         
+            return TOTAL_HRS * companyEmpWage.EMP_RATE_PER_HR;
         }
-        // A fuction that prints employee wage
-           public string toString()
-           {
+    
+    }
+    public class CompanyEmpWage
+    {
+        public const int FULL_TIME = 1;
+        public const int PART_TIME = 2;
+
+        public String COMPANY_NAME;
+        public int EMP_RATE_PER_HR;
+        public int NUM_OF_WORKINGDAYS;
+        public int MAX_HRS_PER_MONTH;
+        public int TOTAL_WAGES;
+        //Constructor for EmpWageBuilderObject class; 
+        public CompanyEmpWage(String COMPANY_NAME, int EMP_RATE_PER_HR, int NUM_OF_WORKINGDAYS, int MAX_HRS_PER_MONTH)
+        {
+            this.COMPANY_NAME = COMPANY_NAME;
+            this.EMP_RATE_PER_HR = EMP_RATE_PER_HR;
+            this.NUM_OF_WORKINGDAYS = NUM_OF_WORKINGDAYS;
+            this.MAX_HRS_PER_MONTH = MAX_HRS_PER_MONTH;
+        }
+        public void setTotalEmpWage(int TOTAL_WAGES)
+        {
+            this.TOTAL_WAGES = TOTAL_WAGES;
+        }
+        public string toString()
+        {
             return "Total Employee wage for Company " + this.COMPANY_NAME + " is " + this.TOTAL_WAGES;
-           }
+        }
     }
 
-        class Program
+
+
+
+
+
+
+    class Program
         {
            static void Main(String[] args)
            {
-                EmpWageBuilderObject tvs = new EmpWageBuilderObject("TVSNEXT", 20, 10, 10);
-                tvs.ComputeEmpWage();
-                Console.WriteLine(tvs.toString());
-                EmpWageBuilderObject hcl = new EmpWageBuilderObject("HCL", 20, 10, 10);
-                hcl.ComputeEmpWage();
-                Console.WriteLine(hcl.toString());
+                EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
+                empWageBuilder.addCompanyEmpWage("TVSNEXT", 20, 10, 10);
+                empWageBuilder.addCompanyEmpWage("HCL", 20, 10, 10);
+                empWageBuilder.computeEmpWage();
            }
         }
         
