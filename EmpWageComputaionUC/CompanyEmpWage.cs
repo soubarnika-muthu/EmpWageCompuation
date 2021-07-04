@@ -6,50 +6,52 @@ using System.Threading.Tasks;
 
 namespace EmpWageComputaionUC
 {
-    class CompanyEmpWage
+    class EmployeeDetails
     {
-        public String COMPANY_NAME;
-        public int EMP_RATE_PER_HR;
-        public int NUM_OF_WORKINGDAYS;
-        public int MAX_HRS_PER_MONTH;
-        public int TOTAL_WAGES;
+        //global variables
+        public string companyName;
+        public int employeeRatePerHr;
+        public int maxWorkingDays;
+        public int maxWorkingHrs;
+        public int totalWages;
         private LinkedList<int> dailywage;
-        //Constructor for EmpWageBuilderObject class; 
-        public CompanyEmpWage(String COMPANY_NAME, int EMP_RATE_PER_HR, int NUM_OF_WORKINGDAYS, int MAX_HRS_PER_MONTH)
+
+        //Assign the values passed during object creation to current variables
+        public EmployeeDetails(string companyName, int employeeRatePerHr, int maxWorkingDays, int maxWorkingHrs)
         {
-            this.COMPANY_NAME = COMPANY_NAME;
-            this.EMP_RATE_PER_HR = EMP_RATE_PER_HR;
-            this.NUM_OF_WORKINGDAYS = NUM_OF_WORKINGDAYS;
-            this.MAX_HRS_PER_MONTH = MAX_HRS_PER_MONTH;
+            this.companyName = companyName;
+            this.employeeRatePerHr = employeeRatePerHr;
+            this.maxWorkingDays = maxWorkingDays;
+            this.maxWorkingHrs = maxWorkingHrs;
             dailywage = new LinkedList<int>();
-
-        }
-        public void setTotalEmpWage(int TOTAL_WAGES)
-        {
-            this.TOTAL_WAGES = TOTAL_WAGES;
-        }
-        public void SetDailyWage(int TOTAL_WAGES, CompanyEmpWage companyEmpWage)
-        {
-            companyEmpWage.dailywage.AddLast(TOTAL_WAGES);
         }
 
-        internal void SetDailyWage(object v)
+        public void SetEmployeeWage(int wage)
         {
-            throw new NotImplementedException();
+            this.totalWages = wage;
+        }
+
+        //set the daily wages for the employee
+        public void SetDailyWage(int wage, EmployeeDetails employee)
+        {
+            employee.dailywage.AddLast(wage);
         }
 
         public string toString()
         {
-            return "Total Employee wage for Company " + this.COMPANY_NAME + " is " + this.TOTAL_WAGES;
+            return "Total Employee wage for company \"" + this.companyName + "\" is :" + this.totalWages;
         }
-        public void DisplayDailyWage(CompanyEmpWage companyEmpWage)
+
+        //display the daily wages for the employee 
+        public void DisplayDailyWage(EmployeeDetails employee)
         {
             int day = 1;
-            foreach (int TOTAL_WAGES in companyEmpWage.dailywage)
+            foreach (int wage in employee.dailywage)
             {
-                Console.WriteLine("Day{0}:{1}", day, TOTAL_WAGES);
+                Console.WriteLine("Day{0}:{1}", day, wage);
                 day++;
             }
         }
+
     }
 }

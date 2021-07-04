@@ -7,76 +7,107 @@ using System.Threading.Tasks;
 namespace EmpWageComputaionUC
 {
    public class EmpWageBuilder : IComputeEmpWage
-    {
-        public const int FULL_TIME = 1;
-        public const int PART_TIME = 2;
-        
-        private int numOfCompany = 0;
-        private CompanyEmpWage[] companyEmpWageArray;
-        private CompanyEmpWage companyEmpWage;
+    { 
+        //adding constant global variable
+        const int IS_FULL_TIME = 1;
+        const int IS_PART_TIME = 2;
 
+        LinkedList<EmployeeDetails> employeeDetailsList;
+        Dictionary<string, EmployeeDetails> companyList;
+
+        //creating object for the list and dictionary
         public EmpWageBuilder()
         {
-            this.companyEmpWageArray = new CompanyEmpWage[5];
+            this.employeeDetailsList = new LinkedList<EmployeeDetails>();
+            this.companyList = new Dictionary<string, EmployeeDetails>();
         }
-        public void addCompanyEmpWage(String COMPANY_NAME, int EMP_RATE_PER_HR, int NUM_OF_WORKINGDAYS, int MAX_HRS_PER_MONTH)
+        public void addDetail(string companyName, int employeeRatePerHr, int maxWorkingDays, int maxWorkingHrs)
         {
-            companyEmpWageArray[this.numOfCompany] = new CompanyEmpWage(COMPANY_NAME, EMP_RATE_PER_HR, NUM_OF_WORKINGDAYS, MAX_HRS_PER_MONTH);
-            numOfCompany++;
+            EmployeeDetails employee = new EmployeeDetails(companyName, employeeRatePerHr, maxWorkingDays, maxWorkingHrs);
+            this.employeeDetailsList.AddLast(employee);
+            this.companyList.Add(companyName, employee);
         }
-        public void computeEmpWage()
+
+        public void ComputeWage()
         {
-            for (int i = 0; i < numOfCompany; i++)
+            foreach (EmployeeDetails employee in this.employeeDetailsList)
             {
-                companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
-               
-                Console.WriteLine(this.companyEmpWageArray[i].toString());
-            }
-
-
-        }     
-
-        private int computeEmpWage(CompanyEmpWage companyEmpWage)
-        {
-            //Initialize local variable
-            int EMP_HRS = 0;
-            int TOTAL_HRS = 0;
-            int TOTAL_WORKINGDAYS = 0;
-
-
-            //Using for loop to calculate wages for 20 days
-            while (TOTAL_HRS <= companyEmpWage.MAX_HRS_PER_MONTH && TOTAL_WORKINGDAYS <= companyEmpWage.NUM_OF_WORKINGDAYS)
-            {
-                //Creating object or Instance of random class
-                Random random = new Random();
-                //Generating Random Value by Calling Next Method
-                int EMP_INPUT = random.Next(0, 3);
-
-                //Using switch case to check full time or part time employee
-                switch (EMP_INPUT)
+                employee.SetEmployeeWage(this.ComputeEmployeeWage(employee));
+                Console.WriteLine("enter 1 if daily wages has to be displayed");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                if (choice == 1)
                 {
-                    case FULL_TIME:
+                    employee.DisplayDailyWage(employee);
+                }
+                Console.WriteLine(employee.toString());
+            }
+        }
 
-                        EMP_HRS = 8;
+        private int ComputeEmployeeWage(EmployeeDetails details)
+        {
+            //initialize local variable 
+            int empHrs = 0;
+            int empWages = 0;
+            int monthlyWages = 0;
+            int workingHr = 0;
+            int day = 0;
+            //Creating object or instance of Random class
+            Random random = new Random();
+
+
+            //Calculatin monthly Wages for 20days or for 100Hrs of work
+            while (day <= details.maxWorkingDays && workingHr < details.maxWorkingHrs)
+            {
+
+
+                //Generating Random value by calling Next Method
+                int empInput = random.Next(0, 3);
+
+                //Checking employee status using switch case statement
+                switch (empInput)
+                {
+                    case IS_FULL_TIME:
+                        empHrs = 8;
                         break;
-                    case PART_TIME:
-
-                        EMP_HRS = 4;
+                    case IS_PART_TIME:
+                        empHrs = 4;
                         break;
                     default:
-                        EMP_HRS = 0;
+                        empHrs = 0;
                         break;
                 }
-                TOTAL_HRS += EMP_HRS;
 
-                TOTAL_WORKINGDAYS++;
+                //calculating Daily wages of Employee by Working Hours
+                empWages = empHrs * details.employeeRatePerHr;
+                //sets the daily wage 
+                details.SetDailyWage(empWages, details);
+                monthlyWages += empWages;
+                workingHr += empHrs;
 
+                if (empInput != 0)
+                {
+                    day++;
+                }
 
             }
-            //Calculating Daily Wages of Employee
-            return TOTAL_HRS * companyEmpWage.EMP_RATE_PER_HR;
+
+            Console.WriteLine("Total working days :{0} \nTotal working hours:{1}", day, workingHr);
+            return monthlyWages;
         }
 
+        public int GetEmployeeWage(string company)
+        {
+            return (this.companyList[company].totalWages);
+        }
+
+        public void addCompanyEmpWage(string companyName, int employeeRatePerHr, int maxWorkingDays, int maxWorkingHrs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void computeEmpWage()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
-
