@@ -11,13 +11,15 @@ namespace EmpWageComputaionUC
     /// UC7- Computing the Employee wages using class method
     /// UC8- Computing the employee wages for multiple company
     /// UC9- Saving total wages for each company using class EmployeeBuilder
+    /// UC11-Creating API procedure
+    /// UC12-Manage multiple companies using Array list
     /// </summary>
     /// <param name="args">The arguments.</param>
     /// 
 
 
     //class method to compute the employee wages
-     public class Program
+    public class Program
         {
            static void Main(String[] args)
            {
